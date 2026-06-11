@@ -1,3 +1,3 @@
 # AppLanchesMaui
 
-Aplicativo de lanches desenvolvido em .NET MAUI como projeto de estudo.
+Projeto de estudo da linguagem C# e do framework .NET MAUI.
