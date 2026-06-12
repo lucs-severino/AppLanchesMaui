@@ -4,10 +4,10 @@ namespace AppLanches;
 
 public partial class App : Application
 {
-	public App()
+	public App(InscricaoPage inscricaoPage)
 	{
 		InitializeComponent();
 
-		MainPage = new NavigationPage (new InscricaoPage());
+		MainPage = new NavigationPage (inscricaoPage);
 	}
 }
