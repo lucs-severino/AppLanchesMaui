@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using Services;
 
 namespace AppLanches;
 
@@ -19,6 +20,14 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 		builder.Services.AddHttpClient();
+		builder.Services.AddSingleton<ApiService>(provider =>
+		{
+			var httpClient = provider.GetRequiredService<HttpClient>();
+			var logger = provider.GetRequiredService<ILogger<ApiService>>();
+			string baseUrl = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5284/" : "http://localhost:5284/";
+			return new ApiService(httpClient, baseUrl, logger);
+		});
+
 		return builder.Build();
 	}
 }

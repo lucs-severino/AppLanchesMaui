@@ -37,7 +37,7 @@ public class ApiService
             };
 
             var json = JsonSerializer.Serialize(register, _serializerOptions);
-            var content = new StringContent(json, Encoding.UTF8, "application/jason");
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             var response = await PostRequest("api/Usuarios/Register", content);
 

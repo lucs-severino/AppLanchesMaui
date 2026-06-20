@@ -1,13 +1,17 @@
 using Pages;
+using Services;
 
 namespace AppLanches;
 
 public partial class App : Application
 {
-	public App(InscricaoPage inscricaoPage)
+	private readonly ApiService _apiService;
+	public App(ApiService apiService)
 	{
 		InitializeComponent();
+		_apiService = apiService;
 
-		MainPage = new NavigationPage (inscricaoPage);
+		MainPage = new AppShell();  //new NavigationPage(new InscricaoPage(_apiService));
+
 	}
 }
