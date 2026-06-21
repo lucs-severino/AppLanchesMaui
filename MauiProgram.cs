@@ -1,3 +1,5 @@
+using App.Validations;
+using Application.Validations;
 using Microsoft.Extensions.Logging;
 using Services;
 
@@ -20,14 +22,8 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 		builder.Services.AddHttpClient();
-		builder.Services.AddSingleton<ApiService>(provider =>
-		{
-			var httpClient = provider.GetRequiredService<HttpClient>();
-			var logger = provider.GetRequiredService<ILogger<ApiService>>();
-			string baseUrl = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5284/" : "http://localhost:5284/";
-			return new ApiService(httpClient, baseUrl, logger);
-		});
-
+		builder.Services.AddSingleton<ApiService>();
+		builder.Services.AddSingleton<IValidator, Validator>();
 		return builder.Build();
 	}
 }
